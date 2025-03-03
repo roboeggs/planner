@@ -33,15 +33,6 @@ ul li:last-child {
   font-size: 20px;
 }
 
-.task-list {
-  margin: 0;
-  padding: 50px 20px;
-  list-style: none;
-  background-color: #F5FBFF;
-  border: #00B7FF 3px solid;
-  border-radius: 15px;
-}
-
 .generate-btn{
   background-color: #0D99FF; /* Green */
   border: none;
@@ -62,4 +53,49 @@ ul li:last-child {
   /* background-color: #0D99FF; */
   color: white;
   border: none;
+}
+
+/* stylesheets/style.css */
+.calendar {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #BDE3FF;
+}
+
+.calendar table {
+  width: 30%;
+  border-collapse: collapse;
+}
+
+.calendar th, .calendar td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px; /* Закругленные углы для ячеек таблицы */
+}
+
+.calendar th {
+  background-color: #BDE3FF;
+  font-weight: bold;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-list, .calendar {
+  flex: 1;
+  margin: 10px;
+}
+
+
+.task-list {
+  margin: 0;
+  padding: 50px 20px;
+  list-style: none;
+  background-color: #F5FBFF;
+  border: #00B7FF 3px solid;
+  border-radius: 15px;
 }
