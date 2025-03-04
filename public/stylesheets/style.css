@@ -99,3 +99,13 @@ ul li:last-child {
   border: #00B7FF 3px solid;
   border-radius: 15px;
 }
+
+.task-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-block .time {
+  margin: 0;
+}
