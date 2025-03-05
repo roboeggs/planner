@@ -5,21 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Planner</title>
     <link rel="stylesheet" href="stylesheets/style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("promptForm").addEventListener("submit", async function(event) {
+                event.preventDefault(); 
+
+                const message = document.getElementById("message");
+                message.style.display = "block"
+
+                const formData = new FormData(this); 
+                const queryString = new URLSearchParams(formData).toString();
+
+                try {
+                    const response = await fetch(`/prompt?${queryString}`, { method: "GET" });
+
+                    if (!response.ok) {
+                        throw new Error("An error occurred when generating the plan.");
+                    }
+
+                    const text = await response.text();
+                    document.body.insertAdjacentHTML("beforeend", text); 
+
+                } catch (error) {
+                    alert("An error has occurred: " + error.message);
+                } finally {
+                    message.style.display = "none"; 
+                }
+            });
+        });
+
+      </script>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Create task</h1>
-            <form action="/team_name_url/" method="get">
+            <form id="promptForm" target="hiddenFrame">
                 <input
-                    class="generate"
-                    id="generate"
-                    type="text"
-                    name="name_field"
-                    placeholder="Build a house"
+                  class="generate"
+                  id="generate"
+                  type="text"
+                  name="prompt"
+                  placeholder="Build a house"
                 />
                 <input class="generate-btn" type="submit" value="Generate Plan" />
-            </form>
+              </form>
+              <div id="message" style="display: none;">Please wait, plan generation...</div>
         </header>
 
         <div class="content">
