@@ -10,89 +10,104 @@
     <div class="container">
         <header>
             <h1>Create task</h1>
-            <!-- <input type="text" id="task-name" placeholder="Build a house"> -->
             <form action="/team_name_url/" method="get">
-              <!-- <label for="team_name">Enter name: </label> -->
-              <input
-              class="generate"
-                id="generate"
-                type="text"
-                name="name_field"
-                placeholder="Build a house" />
-              <input class="generate-btn" type="submit" value="Generate Plan" />
+                <input
+                    class="generate"
+                    id="generate"
+                    type="text"
+                    name="name_field"
+                    placeholder="Build a house"
+                />
+                <input class="generate-btn" type="submit" value="Generate Plan" />
             </form>
         </header>
-        
-
 
         <div class="content">
-          <section class="task-list">
-              <h2>Task list</h2>
-              <ul>
-                <% data["subtasks"].forEach(subtask => { %>
-                    <li style="background-color: <%= getColorByComplexity(subtask["complexity"]) %>;" 
-                        class="task-block"
-                    >
-                        <div>
-                            <h3><%= subtask["title"] %></h3>
-                            <p>Description: <%= subtask["description"] %></p>
-                        </div>
-                        <p class="time">Time day: <%= subtask["estimated_time"] %></p>
-                    </li>
-                    <h4>Microtask</h4>
-                    <% if (subtask["microtasks"]) { %>
-                        <ul>
-                            <% subtask["microtasks"].forEach(microtask => { %>
-                                <li style="background-color: <%= getColorByComplexity(microtask["complexity"]) %>;"
-                                    class="task-block"  
-                                >
-                                    <div>
-                                        <h3><%= microtask["title"] %></h3>
-                                        <p>Description: <%= microtask["description"] %></p>
-                                    </div>
-                                    <p class="time">Time day: <%= microtask["estimated_time"] %></p>
-                                </li>
-                            <% }) %>
-                        </ul>
+            <section class="task-list">
+                <h2>Task list</h2>
+                <ul>
+                    <% if (data.subtasks) { %>
+                        <% data.subtasks.forEach(subtask => { %>
+                            <li 
+                                style="background-color: <%= getColorByComplexity(subtask.complexity) %>;" 
+                                class="task-block"
+                            >
+                                <div>
+                                    <h3><%= subtask.title %></h3>
+                                    <p>Description: <%= subtask.description %></p>
+                                </div>
+                                <p class="time">Time in hours: <%= subtask.estimated_time %></p>
+                            </li>
+                            <% if (subtask.microtasks) { %>
+                                <h4>Microtask</h4>
+                                <ul>
+                                    <% subtask.microtasks.forEach(microtask => { %>
+                                        <li 
+                                            style="background-color: <%= getColorByComplexity(microtask.complexity) %>;"
+                                            class="task-block"
+                                        >
+                                            <div>
+                                                <h3><%= microtask.title %></h3>
+                                                <p>Description: <%= microtask.description %></p>
+                                            </div>
+                                            <p class="time">Time in hours: <%= microtask.estimated_time %></p>
+                                        </li>
+                                    <% }) %>
+                                </ul>
+                            <% } %>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No subtasks available.</p>
                     <% } %>
-                <% }) %>
-              </ul>
-              <div class="task-actions">
-                  <button class="button-func" style="background-color: #9747FF;" id="add-task">Add task</button>
-                  <button class="button-func" style="background-color: #C2EEFF; color: black;" id="save">Save</button>
-                  <button class="button-func" style="background-color: #0D99FF;" id="regenerate">Regenerate</button>
-              </div>
-          </section>
-        
-          <section class="calendar">
-              <h2>Calendar</h2>
-              <% data["subtasks"].forEach(subtask => { %>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th><th>Su</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for (let y = 0; y < 4; y++) { %>
-                            <tr>
-                                <% for (let i = 1; i <= 7; i++) { %>
-                                    <td 
-                                    <% if(0){ %>
-                                        style="
-                                        color: #ffffff;
-                                        background-color: rgb(183, 117, 241);
-                                        "
-                                    <% } %>
-                                    >
-                                    <%= i + y * 7 %></td>
+                </ul>
+                <div class="task-actions">
+                    <button class="button-func" style="background-color: #9747FF;" id="add-task">Add task</button>
+                    <button class="button-func" style="background-color: #C2EEFF; color: black;" id="save">Save</button>
+                    <button class="button-func" style="background-color: #0D99FF;" id="regenerate">Regenerate</button>
+                </div>
+            </section>
+
+            <section class="calendar">
+                <h2>Calendar</h2>
+                <% if (data.subtasks) { %>
+                    <% data.subtasks.forEach(subtask => { %>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mo</th>
+                                    <th>Tu</th>
+                                    <th>We</th>
+                                    <th>Th</th>
+                                    <th>Fr</th>
+                                    <th>Sa</th>
+                                    <th>Su</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let y = 0; y < 4; y++) { %>
+                                    <tr>
+                                        <% for (let i = 1; i <= 7; i++) { %>
+                                            <% 
+                                                const currentDay = i + y * 7; 
+                                                const isWithinRange = subtask.start_date <= currentDay && subtask.due_date >= currentDay;
+                                            %>
+                                            <td 
+                                                <% if (isWithinRange) { %>
+                                                    style="color: #ffffff; background-color: rgb(183, 117, 241);"
+                                                <% } %>
+                                            >
+                                                <%= currentDay %>
+                                            </td>
+                                        <% } %>
+                                    </tr>
                                 <% } %>
-                            </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-              <% }) %>
-          </section>
+                            </tbody>
+                        </table>
+                    <% }) %>
+                <% } else { %>
+                    <p>No subtasks available.</p>
+                <% } %>
+            </section>
         </div>
     </div>
 </body>
