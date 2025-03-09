@@ -1,10 +1,17 @@
 var express = require('express');
 require('dotenv').config();
 const { body, validationResult } = require("express-validator");
-let encoded = require('./encodedData');
+// let dataHelp = require('./helpers');
+const fs = require('fs');
 const helpers = require('./helpers');
 
+
+// Read JSON data from file
+const newdata =JSON.parse(fs.readFileSync('./routes/data.json', 'utf8'));
+// console.log(data);
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+
+// const getColorByComplexity = require('/helper').getColorByComplexity;
 
 const generationConfig = {
   temperature: 1,
@@ -15,6 +22,10 @@ const generationConfig = {
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" }, generationConfig);
+
+const sanitizeJSON = (data) => {
+  return data.replace(/```json|```/g, '').trim();
+};
 
 async function generateContent( taskDescription) {
   const prompt = `
@@ -60,56 +71,52 @@ async function generateContent( taskDescription) {
         Task: ${taskDescription}
     `;
   const response = await model.generateContent(prompt);
-  console.log(response.response.text());
+  console.log('Raw response:', response.response.text());
   return response.response.text();
 }
 
-// console.log(generateContent("Promote your own YouTube channel on embedded microcontroller development"));
 
-
+const refactoringJSON = (data) => {
+  try {
+      const jsonData = JSON.parse(data);
+      for (const task of jsonData.subtasks) {
+          task.start_date = new Date(task.start_date).toISOString();
+          task.due_date = new Date(task.due_date).toISOString();
+      }
+      return jsonData;
+  } catch (error) {
+      console.error("Error while parsing or processing JSON:", error);
+      throw new Error("Invalid JSON structure");
+  }
+};
 
 var router = express.Router();
 
-const refactoringJSON = (data) => {
-  let json_data = JSON.parse(data);
-  for (const task of json_data.subtasks) {
-    task.start_date = new Date(task.start_date).getUTCDate();
-    task.due_date = new Date(task.due_date).getUTCDate();
-  }
-  return json_data;
-}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', data: refactoringJSON(encoded), getColorByComplexity: helpers.getColorByComplexity });
+  res.render('index', { data: newdata, getColorByComplexity: helpers.getColorByComplexity}); 
 });
 
+
 router.get('/prompt', async function (req, res) {
-  const userPrompt = req.query.prompt;
+  const userPrompt = req.query.prompt; 
+
+  if (!userPrompt) {
+      return res.status(400).json({ error: "Missing 'prompt' in query parameters" });
+  }
 
   try {
-    const generatedContent = await generateContent(userPrompt);
-    encoded = JSON.parse(generatedContent); 
+      // const newdata = JSON.parse(fs.readFileSync('./routes/data.json', 'utf8'));
 
-  
-    res.send(`
-      <script>
-        alert('The generation is complete! The data has been updated.');
-        window.location.href = '/'; 
-      </script>
-    `);
+      const generatedContent = await generateContent(userPrompt);
+      const sanitizedContent = sanitizeJSON(generatedContent);
+      const refact = refactoringJSON(sanitizedContent);
+      res.status(200).json({ data: refact });
   } catch (error) {
-    console.error('Error when generating content:', error);
-    res.send(`
-      <script>
-        alert('An error occurred when generating the plan.');
-        window.location.href = '/'; 
-      </script>
-    `);
+      console.error('Error when generating content:', error);
+      res.status(500).json({ error: 'An error occurred when generating the plan.' });
   }
 });
 
 module.exports = router;
-
-
-

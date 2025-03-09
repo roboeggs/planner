@@ -1,0 +1,267 @@
+{
+    "task": "Build a home",
+    "subtasks": [
+      {
+        "title": "Plan and Design",
+        "description": "Create architectural blueprints and detailed plans for the home, including layout, materials, and budget.",  
+        "estimated_time": 40,
+        "complexity": "Medium",
+        "start_date": "2024-10-27",
+        "due_date": "2024-11-09",
+        "microtasks": [
+          {
+            "title": "Conceptual Design",
+            "description": "Develop initial ideas and sketches for the home's design.",
+            "estimated_time": 8,
+            "complexity": "Easy",
+            "start_date": "2024-10-27",
+            "due_date": "2024-10-28"
+          },
+          {
+            "title": "Architectural Blueprints",
+            "description": "Create detailed blueprints, including floor plans, elevations, and sections.",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-10-29",
+            "due_date": "2024-10-31"
+          },
+          {
+            "title": "Materials Selection",
+            "description": "Choose building materials, including flooring, roofing, siding, and fixtures.",
+            "estimated_time": 8,
+            "complexity": "Medium",
+            "start_date": "2024-11-01",
+            "due_date": "2024-11-02"
+          },
+          {
+            "title": "Budgeting",
+            "description": "Develop a detailed budget for the entire construction project.",
+            "estimated_time": 8,
+            "complexity": "Medium",
+            "start_date": "2024-11-03",
+            "due_date": "2024-11-04"
+          }
+        ]
+      },
+      {
+        "title": "Land Preparation",
+        "description": "Prepare the building site by clearing land, leveling the ground, and installing necessary utilities.",       
+        "estimated_time": 24,
+        "complexity": "Medium",
+        "start_date": "2024-11-10",
+        "due_date": "2024-11-16",
+        "microtasks": [
+          {
+            "title": "Land Clearing",
+            "description": "Remove trees, shrubs, and other vegetation from the building site.",
+            "estimated_time": 8,
+            "complexity": "Medium",
+            "start_date": "2024-11-10",
+            "due_date": "2024-11-11"
+          },
+          {
+            "title": "Grading and Leveling",
+            "description": "Level the ground and ensure proper drainage.",
+            "estimated_time": 8,
+            "complexity": "Medium",
+            "start_date": "2024-11-12",
+            "due_date": "2024-11-13"
+          },
+          {
+            "title": "Utility Installation",
+            "description": "Install water, sewer, and electrical lines.",
+            "estimated_time": 8,
+            "complexity": "Hard",
+            "start_date": "2024-11-14",
+            "due_date": "2024-11-16"
+          }
+        ]
+      },
+      {
+        "title": "Foundation",
+        "description": "Pour the foundation for the home, ensuring it is level and structurally sound.",
+        "estimated_time": 16,
+        "complexity": "Medium",
+        "start_date": "2024-11-17",
+        "due_date": "2024-11-20",
+        "microtasks": [
+          {
+            "title": "Formwork",
+            "description": "Build the forms for the foundation.",
+            "estimated_time": 4,
+            "complexity": "Medium",
+            "start_date": "2024-11-17",
+            "due_date": "2024-11-17"
+          },
+          {
+            "title": "Pouring Concrete",
+            "description": "Pour the concrete into the forms.",
+            "estimated_time": 8,
+            "complexity": "Medium",
+            "start_date": "2024-11-18",
+            "due_date": "2024-11-19"
+          },
+          {
+            "title": "Curing and Inspection",
+            "description": "Allow the concrete to cure and inspect for any issues.",
+            "estimated_time": 4,
+            "complexity": "Easy",
+            "start_date": "2024-11-19",
+            "due_date": "2024-11-20"
+          }
+        ]
+      },
+      {
+        "title": "Framing",
+        "description": "Construct the frame of the house, including walls, floors, and roof.",
+        "estimated_time": 48,
+        "complexity": "Medium",
+        "start_date": "2024-11-21",
+        "due_date": "2024-11-29",
+        "microtasks": [
+          {
+            "title": "Wall Framing",
+            "description": "Build the exterior and interior walls.",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-11-21",
+            "due_date": "2024-11-23"
+          },
+          {
+            "title": "Floor Framing",
+            "description": "Construct the floor joists and subfloor.",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-11-24",
+            "due_date": "2024-11-26"
+          },
+          {
+            "title": "Roof Framing",
+            "description": "Build the roof trusses and sheathing.",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-11-27",
+            "due_date": "2024-11-29"
+          }
+        ]
+      },
+      {
+        "title": "Exterior Finishes",
+        "description": "Install roofing, siding, windows, and doors.",
+        "estimated_time": 40,
+        "complexity": "Medium",
+        "start_date": "2024-11-30",
+        "due_date": "2024-12-08",
+        "microtasks": [
+          {
+            "title": "Roofing Installation",
+            "description": "Install roofing shingles or other roofing material.",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-11-30",
+            "due_date": "2024-12-02"
+          },
+          {
+            "title": "Siding Installation",
+            "description": "Install siding on the exterior walls.",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-12-03",
+            "due_date": "2024-12-05"
+          },
+          {
+            "title": "Window and Door Installation",
+            "description": "Install windows and exterior doors.",
+            "estimated_time": 8,
+            "complexity": "Medium",
+            "start_date": "2024-12-06",
+            "due_date": "2024-12-08"
+          }
+        ]
+      },
+      {
+        "title": "Interior Finishes",
+        "description": "Install insulation, drywall, flooring, fixtures, and paint.",
+        "estimated_time": 80,
+        "complexity": "Medium",
+        "start_date": "2024-12-09",
+        "due_date": "2024-12-29",
+        "microtasks": [
+          {
+            "title": "Insulation",
+            "description": "Install insulation in walls, ceilings, and floors.",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-12-09",
+            "due_date": "2024-12-11"
+          },
+          {
+            "title": "Drywall Installation",
+            "description": "Hang and finish drywall.",
+            "estimated_time": 24,
+            "complexity": "Medium",
+            "start_date": "2024-12-12",
+            "due_date": "2024-12-15"
+          },
+          {
+            "title": "Flooring Installation",
+            "description": "Install flooring materials (carpet, hardwood, tile).",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-12-16",
+            "due_date": "2024-12-19"
+          },
+          {
+            "title": "Fixture Installation",
+            "description": "Install plumbing and electrical fixtures.",
+            "estimated_time": 16,
+            "complexity": "Medium",
+            "start_date": "2024-12-20",
+            "due_date": "2024-12-23"
+          },
+          {
+            "title": "Painting",
+            "description": "Paint interior walls and trim.",
+            "estimated_time": 8,
+            "complexity": "Easy",
+            "start_date": "2024-12-26",
+            "due_date": "2024-12-29"
+          }
+        ]
+      },
+      {
+        "title": "Final Inspection and Cleanup",
+        "description": "Conduct a final inspection to ensure all work meets standards and clean up the construction site.",
+        "estimated_time": 16,
+        "complexity": "Easy",
+        "start_date": "2024-12-30",
+        "due_date": "2025-01-02",
+        "microtasks": [
+          {
+            "title": "Final Walkthrough",
+            "description": "Perform a final walkthrough to identify any deficiencies.",
+            "estimated_time": 4,
+            "complexity": "Easy",
+            "start_date": "2024-12-30",
+            "due_date": "2024-12-30"
+          },
+          {
+            "title": "Deficiency Correction",
+            "description": "Correct any deficiencies found during the final walkthrough.",
+            "estimated_time": 4,
+            "complexity": "Medium",
+            "start_date": "2024-12-31",
+            "due_date": "2024-12-31"
+          },
+          {
+            "title": "Site Cleanup",
+            "description": "Remove construction debris and clean the site.",
+            "estimated_time": 8,
+            "complexity": "Easy",
+            "start_date": "2025-01-01",
+            "due_date": "2025-01-02"
+          }
+        ]
+      }
+    ]
+  }
