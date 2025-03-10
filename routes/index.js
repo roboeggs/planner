@@ -1,7 +1,6 @@
 var express = require('express');
 require('dotenv').config();
 const { body, validationResult } = require("express-validator");
-// let dataHelp = require('./helpers');
 const fs = require('fs');
 const helpers = require('./helpers');
 
@@ -11,7 +10,6 @@ const newdata =JSON.parse(fs.readFileSync('./routes/data.json', 'utf8'));
 // console.log(data);
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// const getColorByComplexity = require('/helper').getColorByComplexity;
 
 const generationConfig = {
   temperature: 1,
